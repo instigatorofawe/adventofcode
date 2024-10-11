@@ -1,6 +1,6 @@
 use std::io::BufRead;
 
-pub fn kmp_preprocess(pattern: &String) -> Vec<i32> {
+pub fn kmp_preprocess(pattern: &str) -> Vec<i32> {
     let mut result = vec![-1; pattern.len() + 1];
     let mut candidate: i32 = 0;
 
@@ -21,10 +21,10 @@ pub fn kmp_preprocess(pattern: &String) -> Vec<i32> {
     }
     result[pattern.len()] = candidate;
 
-    return result;
+    result
 }
 
-pub fn kmp_search(text: &String, pattern: &String, table: Option<&Vec<i32>>) -> Vec<usize> {
+pub fn kmp_search(text: &str, pattern: &str, table: Option<&Vec<i32>>) -> Vec<usize> {
     let mut result: Vec<usize> = Vec::new();
     let mut j: i32 = 0;
     let mut k: i32 = 0;
@@ -36,7 +36,7 @@ pub fn kmp_search(text: &String, pattern: &String, table: Option<&Vec<i32>>) -> 
             lookup = x;
         }
         _ => {
-            lookup_table = kmp_preprocess(&pattern);
+            lookup_table = kmp_preprocess(pattern);
             lookup = &lookup_table;
         }
     }
@@ -58,20 +58,12 @@ pub fn kmp_search(text: &String, pattern: &String, table: Option<&Vec<i32>>) -> 
         }
     }
 
-    return result;
+    result
 }
 
 pub fn run() {
-    let patterns = vec![
-        "one".to_string(),
-        "two".to_string(),
-        "three".to_string(),
-        "four".to_string(),
-        "five".to_string(),
-        "six".to_string(),
-        "seven".to_string(),
-        "eight".to_string(),
-        "nine".to_string(),
+    let patterns = [
+        "one", "two", "three", "four", "five", "six", "seven", "eight", "nine",
     ];
     let values: Vec<u32> = (1..=9).collect();
     let tables: Vec<Vec<i32>> = patterns.iter().map(|x| kmp_preprocess(x)).collect();
@@ -79,7 +71,6 @@ pub fn run() {
     let result: Vec<u32> = std::io::stdin()
         .lock()
         .lines()
-        .into_iter()
         .map(|x| {
             let text = x.unwrap();
 
@@ -87,27 +78,25 @@ pub fn run() {
                 .iter()
                 .zip(values.iter())
                 .zip(tables.iter())
-                .map(|((pattern, value), table)| {
-                    return kmp_search(&text, &pattern, Some(table))
+                .flat_map(|((pattern, value), table)| {
+                    kmp_search(&text, pattern, Some(table))
                         .into_iter()
-                        .map(|index| (index, *value));
+                        .map(|index| (index, *value))
                 })
-                .flatten()
                 .collect();
 
             let digits: Vec<(usize, u32)> = text
                 .chars()
-                .into_iter()
                 .enumerate()
-                .filter(|(i, y)| y.is_numeric())
+                .filter(|(_, y)| y.is_numeric())
                 .map(|(i, y)| (i, y.to_digit(10).unwrap()))
                 .collect();
 
-            y.extend(digits.into_iter());
+            y.extend(digits);
 
             y.sort();
 
-            return y[0].1 * 10 + y[y.len() - 1].1;
+            y[0].1 * 10 + y[y.len() - 1].1
         })
         .collect();
 
@@ -122,26 +111,17 @@ mod tests {
     #[test]
     fn test_kmp_preprocess() {
         assert_eq!(
-            kmp_preprocess(&"abacababc".to_string()),
+            kmp_preprocess("abacababc"),
             vec![-1, 0, -1, 1, -1, 0, -1, 3, 2, 0]
         );
 
-        assert_eq!(
-            kmp_preprocess(&"abcdabd".to_string()),
-            vec![-1, 0, 0, 0, -1, 0, 2, 0]
-        );
+        assert_eq!(kmp_preprocess("abcdabd"), vec![-1, 0, 0, 0, -1, 0, 2, 0]);
     }
 
     #[test]
     fn test_kmp_search() {
-        assert_eq!(
-            kmp_search(&"asdfasdf".to_string(), &"asdf".to_string(), None),
-            vec![0, 4]
-        );
+        assert_eq!(kmp_search("asdfasdf", "asdf", None), vec![0, 4]);
 
-        assert_eq!(
-            kmp_search(&"zerone".to_string(), &"one".to_string(), None),
-            vec![3]
-        );
+        assert_eq!(kmp_search("zerone", "one", None), vec![3]);
     }
 }
