@@ -1,6 +1,7 @@
 *.egg-info
 *__pycache__
 
+/inputs
 
 # Added by cargo
 
