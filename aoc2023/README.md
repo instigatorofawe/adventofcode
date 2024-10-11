@@ -14,6 +14,10 @@ occurrence, and compute the resulting number from the first and last digit on ea
 
 ## Day 2
 
-### Part 1
+### [Part 1](day2a.py)
 
-### Part 2
+A simple parsing exercise, using string split and list comprehensions.
+
+### [Part 2](day2b.py)
+
+A simple follow-up; we compute the maximum number of balls of each color for each line using a Dict to store values.
