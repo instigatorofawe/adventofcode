@@ -21,6 +21,8 @@ fn main() {
         "2023" => match args.day.as_str() {
             "1a" => aoc2023::day1a::run(),
             "1b" => aoc2023::day1b::run(),
+            "2a" => aoc2023::day2a::run(),
+            "2b" => aoc2023::day2b::run(),
             _ => println!("Day not found!"),
         },
         _ => println!("Year not found!"),
