@@ -5,10 +5,7 @@ def run():
     power_sum = 0
     for line in sys.stdin:
         split_line = line.split(":")
-        draws = [
-            [y.strip().split(" ") for y in x.split(",")]
-            for x in split_line[1].split(";")
-        ]
+        draws = [[y.split() for y in x.split(",")] for x in split_line[1].split(";")]
         draws_flat = [x for y in draws for x in y]
 
         minimum = {"red": 0, "green": 0, "blue": 0}

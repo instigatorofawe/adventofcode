@@ -11,7 +11,7 @@ pub fn run() {
 
             let draws = binding[1].split(";").flat_map(|color_draws| {
                 color_draws.split(",").map(|draw| {
-                    let split_draws: Vec<&str> = draw.trim().split(" ").collect();
+                    let split_draws: Vec<&str> = draw.split_whitespace().collect();
                     let color = split_draws[1];
                     let value: u32 = split_draws[0].parse::<u32>().unwrap();
                     (color, value)

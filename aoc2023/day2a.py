@@ -9,7 +9,7 @@ def run():
         split_line = line.split(":")
         game_id = int(split_line[0].split(" ")[1])
         draws = [
-            [y.strip().split(" ") for y in x.split(",")]
+            [y.split() for y in x.split(",")]
             for x in split_line[1].split(";")
         ]
         draws_flat = [x for y in draws for x in y]
