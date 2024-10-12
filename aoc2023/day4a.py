@@ -9,7 +9,7 @@ def run():
             [int(x) for x in split_line[0].split(":")[1].split(" ") if x.isnumeric()]
         )
 
-        numbers = [int(x) for x in split_line[1].strip().split(" ") if x.isnumeric()]
+        numbers = [int(x) for x in split_line[1].split() if x.isnumeric()]
         matches = sum([x in memo for x in numbers])
 
         points = 1 << (matches - 1) if matches > 0 else 0

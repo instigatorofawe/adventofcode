@@ -11,7 +11,7 @@ def run():
             [int(x) for x in split_line[0].split(":")[1].split(" ") if x.isnumeric()]
         )
 
-        numbers = [int(x) for x in split_line[1].strip().split(" ") if x.isnumeric()]
+        numbers = [int(x) for x in split_line[1].split() if x.isnumeric()]
         matches = sum([x in memo for x in numbers])
         n_matches.append(matches)
 
