@@ -14,8 +14,8 @@
 | 1b  | 65ms   | 13ms |
 | 2a  | 42ms   | 10ms |
 | 2b  | 44ms   | 11ms |
-| 3a  | 46ms   |
-| 3b  | 45ms
+| 3a  | 46ms   | 12ms |
+| 3b  | 45ms   | 12ms |
 | 4a  | 42ms
 | 4b  | 43ms
 | 5a
