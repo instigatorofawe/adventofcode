@@ -33,7 +33,7 @@ pub fn run() {
                 }
             }
 
-            return game_id;
+            game_id
         })
         .sum();
     println!("{result}");

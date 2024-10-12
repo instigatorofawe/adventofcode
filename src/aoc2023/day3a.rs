@@ -19,21 +19,15 @@ pub fn run() {
 
         line.chars().enumerate().for_each(|(i, c)| {
             if c.is_numeric() {
-                match current_start {
-                    None => {
-                        current_start = Some(i);
-                    }
-                    _ => {}
+                if current_start.is_none() {
+                    current_start = Some(i);
                 }
                 current_value = current_value * 10 + c.to_digit(10).unwrap();
             } else {
-                match current_start {
-                    Some(j) => {
-                        current_numbers.push((current_value, j, i - 1));
-                        current_start = None;
-                        current_value = 0;
-                    }
-                    _ => {}
+                if let Some(j) = current_start {
+                    current_numbers.push((current_value, j, i - 1));
+                    current_start = None;
+                    current_value = 0;
                 }
 
                 if symbol_lookup.contains(&c) {
@@ -42,11 +36,8 @@ pub fn run() {
             }
         });
 
-        match current_start {
-            Some(j) => {
-                current_numbers.push((current_value, j, line.len() - 1));
-            }
-            _ => {}
+        if let Some(j) = current_start {
+            current_numbers.push((current_value, j, line.len() - 1));
         }
 
         numbers.push(current_numbers);
