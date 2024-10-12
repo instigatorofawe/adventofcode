@@ -1,14 +1,12 @@
 # Advent of Code Solutions
 
-## Python
-### [2023](./aoc2023/README.md)
+## 2023
 
-## Rust
-### [2023](./src/aoc2023/README.md)
+### [Python](./aoc2023/README.md)
 
-## Benchmarks
+### [Rust](./src/aoc2023/README.md)
 
-### 2023
+### Benchmarks
 
 | Day | Python | Rust |
 |-----|--------|------|
