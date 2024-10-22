@@ -1,57 +1,52 @@
 import sys
 
 
-def count(pattern: list[str]) -> list[int]:
-    result: list[int] = []
-    current_count = 0
+def eval(pattern: str, counts: list[int]) -> int:
+    # print()
+    # print(pattern)
+    # print(counts)
 
-    for c in pattern:
+    pattern_start = 0
+    current_count = 0
+    count_index = 0
+
+    for i, c in enumerate(pattern):
         match c:
             case "#":
                 current_count += 1
-            case _:
+                if count_index >= len(counts) or current_count > counts[count_index]:
+                    return 0
+            case ".":
+                pattern_start = i + 1
                 if current_count > 0:
-                    result.append(current_count)
-                current_count = 0
 
-    if current_count > 0:
-        result.append(current_count)
+                    if current_count < counts[count_index]:
+                        return 0
 
-    return result
+                    current_count = 0
+                    count_index += 1
+            case _:
+                a = [x for x in pattern]
+                a[i] = "."
+                b = [x for x in pattern]
+                b[i] = "#"
 
+                return eval("".join(a)[pattern_start:], counts[count_index:]) + eval(
+                    "".join(b)[pattern_start:], counts[count_index:]
+                )
 
-def eval(pattern: list[str], counts: list[int], empty: list[int]) -> int:
-    current_count = count(pattern)
-
-    # if current_count > counts:
-    #     return 0
-
-    if current_count == counts:
-        # print("".join(pattern))
-        return 1
-
-    if len(empty) == 0:
-        return 0
-
-    a = pattern.copy()
-    b = pattern.copy()
-
-    a[empty[0]] = "#"
-    b[empty[0]] = "."
-
-    return eval(a, counts, empty[1:]) + eval(b, counts, empty[1:])
+    return (current_count == 0 and count_index == len(counts)) or (
+        count_index == len(counts) - 1 and current_count == counts[-1]
+    )
 
 
 def run():
     result = 0
     for line in sys.stdin:
         split_line = line.split()
-        pattern = [x for x in split_line[0]]
         counts = [int(x) for x in split_line[1].split(",")]
-        empty = [i for i, x in enumerate(pattern) if x == "?"]
 
-        result += eval(pattern, counts, empty)
-
+        result += eval(split_line[0], counts)
     print(result)
 
 
@@ -60,11 +55,5 @@ if __name__ == "__main__":
 
 
 def test_eval():
-    # pattern = [x for x in "?###????????"]
-    # counts = [3, 2, 1]
-    pattern = [x for x in "?#?#?#?#?#?#?#?"]
-    counts = [1, 3, 1, 6]
-    empty = [i for i, x in enumerate(pattern) if x == "?"]
-
-    # assert count(pattern) == [3]
-    print(eval(pattern, counts, empty))
+    result = eval("?###????????", [3, 2, 1])
+    print(result)
