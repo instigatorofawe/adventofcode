@@ -1,5 +1,9 @@
 # Advent of Code Solutions
 
+## 2024
+
+### [Python](./aoc2024/README.md)
+
 ## 2023
 
 ### [Python](./aoc2023/README.md)
@@ -34,8 +38,8 @@
 | 11b | 160ms
 | 12a | 165ms
 | 12b | 288ms
-| 13a
-| 13b
+| 13a | 42ms
+| 13b | 44ms
 | 14a
 | 14b
 | 15a
