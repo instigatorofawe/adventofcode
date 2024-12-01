@@ -10,11 +10,12 @@ def run():
         left.append(int(s[0]))
         right.append(int(s[-1]))
 
-    left.sort()
-    right.sort()
+    counts = {}
+    for r in right:
+        counts[r] = counts.get(r, 0) + 1
 
-    for a, b in zip(left, right):
-        result += abs(a - b)
+    for l in left:
+        result += counts.get(l, 0) * l
 
     print(result)
 
