@@ -1,7 +1,7 @@
 [project]
 name = "aoc"
-version = "2024.10.10.0"
+version = "2024.12.1.0"
 
 [build-systems]
 requires = "setuptools"
-build-backend = "setuptools.buil_meta"
+build-backend = "setuptools.build_meta"
