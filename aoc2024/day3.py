@@ -10,7 +10,7 @@ def part_b(lines: list[str]):
 
 
 def run():
-    lines = [line.strip() for line in sys.stdin]
+    lines = [line for line in sys.stdin]
     part_a(lines)
     part_b(lines)
 
