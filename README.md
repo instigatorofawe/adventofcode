@@ -1,66 +1,27 @@
+
 # Advent of Code Solutions
 
 ## 2024
 
-### [Python](./aoc2024/README.md)
+### [Python](./aoc2024)
 
-## 2023
+| Day 1 | Day 2 | Day 3 | Day 4 | Day 5 | Day 6 | Day 7 | Day 8 | Day 9 | Day 10 |
+|-------|-------|-------|-------|-------|-------|-------|-------|-------|-------|
+| [311/1114](aoc2024/day1.py) | [TBD](aoc2024/day2.py) |
 
-### [Python](./aoc2023/README.md)
+| Day 11 | Day 12 | Day 13 | Day 14 | Day 15 | Day 16 | Day 17 | Day 18 | Day 19 | Day 20 |
+|-------|-------|-------|-------|-------|-------|-------|-------|-------|-------|
+| |
 
-### [Rust](./src/aoc2023/README.md)
+| Day 21 | Day 22 | Day 23 | Day 24 | Day 25 |
+|-------|-------|-------|-------|-------|
+| |
 
-### Benchmarks
+### [Rust](./src/aoc2024)
 
-| Day | Python | Rust |
-|-----|--------|------|
-| 1a  | 39ms   | 10ms |
-| 1b  | 65ms   | 13ms |
-| 2a  | 42ms   | 10ms |
-| 2b  | 44ms   | 11ms |
-| 3a  | 46ms   | 12ms |
-| 3b  | 45ms   | 12ms |
-| 4a  | 42ms   | 12ms |
-| 4b  | 43ms   | 14ms |
-| 5a  | 44ms
-| 5b  | 45ms
-| 6a  | 44ms
-| 6b  | 40ms
-| 7a  | 45ms
-| 7b  | 43ms
-| 8a  | 42ms
-| 8b  | 46ms
-| 9a  | 48ms
-| 9b  | 49ms
-| 10a | 51ms
-| 10b | 52ms
-| 11a | 159ms
-| 11b | 160ms
-| 12a | 165ms
-| 12b | 288ms
-| 13a | 42ms
-| 13b | 44ms
-| 14a
-| 14b
-| 15a
-| 15b
-| 16a
-| 16b
-| 17a
-| 17b
-| 18a
-| 18b
-| 19a
-| 19b
-| 20a
-| 20b
-| 21a
-| 21b
-| 22a
-| 22b
-| 23a
-| 23b
-| 24a
-| 24b
-| 25a
-| 25b
+## 2023 (Unranked, solutions written in 2024)
+
+### [Python](./aoc2023)
+
+### [Rust](./src/aoc2023)
+
