@@ -1,8 +1,6 @@
 # Advent of Code Solutions
 
-## 2024 (Rank for Part A/Part B)
-
-### [Python](./aoc2024)
+## [2024 (Rank for Part A/Part B)](./aoc2024)
 
 | Day 1 | Day 2 | Day 3 | Day 4 | Day 5 | Day 6 | Day 7 | 
 |-------|-------|-------|-------|-------|-------|-------|
@@ -34,11 +32,5 @@ Day       Time   Rank  Score       Time   Rank  Score
   1   00:02:03    311      0   00:05:55   1114      0
 ```
 
-### [Rust](./src/aoc2024)
-
-## 2023 (Unranked, solutions written in 2024)
-
-### [Python](./aoc2023)
-
-### [Rust](./src/aoc2023)
+## [2023 (Unranked, solutions written in 2024)](./aoc2023)
 
