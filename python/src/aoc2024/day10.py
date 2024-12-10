@@ -46,7 +46,6 @@ def part_b(lines: list[str]):
 
     for i, j in trailheads:
         queue = [(i, j)]
-        visited = [[False] * width for _ in range(height)]
         while queue:
             next_level = []
             for a, b in queue:
