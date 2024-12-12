@@ -108,9 +108,9 @@ def get_next(
     return None
 
 
-def run():
+def part_a(lines: list[str]):
     map: list[list[str]] = []
-    for line in sys.stdin:
+    for line in lines:
         map.append([x for x in line.strip()])
 
     # Get start position
@@ -135,6 +135,70 @@ def run():
         if current == (i, j):
             print(distance // 2)
             break
+
+
+def part_b(lines: list[str]):
+    map: list[list[str]] = []
+    for line in lines:
+        map.append([x for x in line])
+
+    height = len(map)
+    width = len(map[0])
+
+    # Get start position
+
+    i, j = get_start(map)
+    candidates = get_candidates(map, i, j)
+
+    for candidate in candidates:
+        # Follow until we either can't continue, or the next segment is the starting position
+
+        map[i][j] = candidate
+
+        area_map = [["." for _ in range(width)] for _ in range(height)]
+        area_map[i][j] = candidate
+
+        previous = (i, j)
+        current = get_next(map, previous, previous)
+
+        while current is not None and current != (i, j):
+            area_map[current[0]][current[1]] = map[current[0]][current[1]]
+
+            next = get_next(map, previous, current)
+            previous = current
+            current = next
+
+        if current == (i, j):
+            enclosed = 0
+
+            for row in area_map:
+                boundary_count = 0
+                stack: list[str] = []
+
+                for c in row:
+                    match c:
+                        case ".":
+                            if boundary_count % 2 == 1:
+                                enclosed += 1
+                        case "|":
+                            boundary_count += 1
+                        case "F" | "L":
+                            stack.append(c)
+                        case "7" | "J":
+                            prev = stack.pop()
+                            if (c, prev) == ("7", "L") or (c, prev) == ("J", "F"):
+                                boundary_count += 1
+                        case _:
+                            pass
+
+            print(enclosed)
+            break
+
+
+def run():
+    lines = [line.strip() for line in sys.stdin]
+    part_a(lines)
+    part_b(lines)
 
 
 if __name__ == "__main__":

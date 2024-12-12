@@ -74,16 +74,48 @@ class Map:
     def __repr__(self) -> str:
         return str(self.segments)
 
-    @override
-    def __str__(self) -> str:
-        return str(self.segments)
 
+def part_a(lines: list[str]):
 
-def run():
     maps = [Map() for _ in range(7)]
     map_index: int = -1
 
-    lines = iter(sys.stdin)
+    lines = iter(lines)
+    seeds = [int(x) for x in next(lines).split(":")[1].split()]
+
+    while True:
+        line = next(lines, None)
+        if line is None:
+            break
+
+        if line == "\n":
+            map_index += 1
+            _ = next(lines)
+        else:
+            current_mapping = [int(x) for x in line.split()]
+            maps[map_index].add(
+                (
+                    current_mapping[1],
+                    current_mapping[1] + current_mapping[2] - 1,
+                    current_mapping[0] - current_mapping[1],
+                )
+            )
+
+    results: list[int] = []
+    for seed in seeds:
+        for i in range(7):
+            seed = maps[i].map(seed)
+        results.append(seed)
+
+    print(min(results))
+    pass
+
+
+def part_b(lines: list[str]):
+    maps = [Map() for _ in range(7)]
+    map_index: int = -1
+
+    lines = iter(lines)
     seeds = [int(x) for x in next(lines).split(":")[1].split()]
     seed_ranges = [
         (seeds[i * 2], seeds[i * 2] + seeds[i * 2 + 1] - 1)
@@ -116,13 +148,11 @@ def run():
     print(seed_ranges[0][0])
 
 
+def run():
+    lines = [line for line in sys.stdin]
+    part_a(lines)
+    part_b(lines)
+
+
 if __name__ == "__main__":
     run()
-
-
-def test_map_ranges():
-    map = Map()
-    map.add((98, 99, -48))
-    map.add((50, 97, 2))
-
-    print(map.map_ranges([(0, 99)]))
